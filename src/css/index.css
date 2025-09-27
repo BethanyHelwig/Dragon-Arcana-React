@@ -1,0 +1,209 @@
+/* COLOR PALETTE
+Background: #211E23
+Blue: #80c5ff
+Purple: #aa00ff
+Pink: #eda2c0
+Green: 8ac781
+*/
+
+/* -- GENERAL -- */
+
+@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+
+:root {
+    --background-primary-color: #211E23;
+    --text-primary-color: #e6e6e6;
+    --purple-accent-color: #aa00ff;
+    --dark-purple-accent-color: #6f378b;
+    --blue-accent-color: #80c5ff;
+    --gray-secondary-color: #353535;
+    --pale-blue-accent-color: #bbe1ff;
+    --green-accent-color: #8ac781;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-primary-color);
+    color: var(--text-primary-color);
+    font-family: "Amarante", serif;
+    align-items: center;
+}
+
+nav {
+    background-color: var(--background-primary-color);
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    padding: 0.5em 1.5em;
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 5px black;
+}
+
+.nav-links {
+    margin: 0; /* 20px */
+    display: flex; /* change to flex */
+    /* flex-direction: column; */
+    text-align: center;
+    list-style: none;
+    gap: 1.875em; /* 30px */
+    grid-column: span 3;
+    padding: 0;
+}
+
+#register-container,
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* min-width: 90%; */
+    box-sizing: border-box;
+    height: auto;
+    margin: 0 0.625em; /* 10px */
+    padding: 0.9375em; /* 15px */
+    background: linear-gradient(var(--background-primary-color), var(--background-primary-color)) padding-box,
+                linear-gradient(var(--blue-accent-color), var(--purple-accent-color)) border-box;
+    border-radius: 15px;
+    border: 4px solid transparent;
+}
+
+main {
+    margin-top: 5em; /* 80px */
+    margin-bottom: 1.25em; /* 20px */
+    padding: 1.25em; /* 20px */
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    gap: 1em;
+    height: 100%;
+}
+
+/* -- INTERACTIVE COMPONENTS -- */
+
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: var(--dark-purple-accent-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.625em 1.25em; /* 10px 20px */
+    margin-bottom: 0.625em; /* 10px */
+}
+
+button:hover,
+button:active {
+    background-color: #ebd7f5;
+    color: #7700b3;
+    box-shadow: 0 0 20px var(--purple-accent-color);
+}
+
+.hamburger {
+    display: none; /* change to block */
+    font-size: 2rem;
+    background-color: var(--background-primary-color);
+    padding: 0.2em 0.2em;
+    margin: auto;
+}
+
+.hamburger:hover {
+    background-color: var(--gray-secondary-color);
+    color: whitesmoke;
+    box-shadow: none;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.125rem; /* 18px */
+}
+
+a:hover,
+a:active {
+    color: #efadff;
+}
+
+.logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em; /* 4px */
+}
+
+fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 0.5em;
+}
+
+select,
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+    width: 250px;
+    margin-bottom: 0.625em; /* 10px */
+    background-color: #363338;
+    border: 2px solid #5f8caa;
+    border-radius: 10px;
+    padding: 0.5em 0.75em;
+    color: whitesmoke;
+}
+
+input[type="radio"] {
+    margin-right: 0.5em;
+}
+
+select,
+input[type="search"] {
+    min-width: 250px;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* -- TYPOGRAPHY -- */
+
+#hero-title,
+#nav-title {
+    background-image: linear-gradient(white 10%, var(--blue-accent-color));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px var(--purple-accent-color));
+    margin: 0;
+    padding: 0;
+}
+
+#hero-title {
+    line-height: 80%;
+    font-size: 5rem;
+}
+
+#nav-title {
+    font-size: 2rem;
+    margin-left: 15px;
+}
+
+/* -- IMAGES -- */
+
+#nav-logo {
+    height: 60px;
+    padding: 5px;
+}
