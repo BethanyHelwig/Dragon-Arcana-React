@@ -16,9 +16,11 @@ Green: 8ac781
     --purple-accent-color: #aa00ff;
     --dark-purple-accent-color: #6f378b;
     --blue-accent-color: #80c5ff;
+    --blue-secondary-color: #204a64;
     --gray-secondary-color: #353535;
     --pale-blue-accent-color: #bbe1ff;
-    --green-accent-color: #8ac781;
+    --green-accent-color: #aef6d3;
+    --dark-green-accent-color: #496F5D;
 }
 
 * {
@@ -63,7 +65,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* min-width: 90%; */
+    min-width: 400px;
     box-sizing: border-box;
     height: auto;
     margin: 0 0.625em; /* 10px */
@@ -106,6 +108,19 @@ button:active {
     box-shadow: 0 0 20px var(--purple-accent-color);
 }
 
+.btn-alt {
+    background-color: var(--gray-secondary-color);
+    border: 1px solid var(--gray-secondary-color);
+}
+
+.btn-alt:hover,
+.btn-alt:active {
+    background-color: var(--gray-secondary-color);
+    color: var(--green-accent-color);
+    box-shadow: none;
+    border: 1px solid var(--dark-green-accent-color);
+}
+
 .hamburger {
     display: none; /* change to block */
     font-size: 2rem;
@@ -128,7 +143,7 @@ a {
 
 a:hover,
 a:active {
-    color: #efadff;
+    color: var(--green-accent-color);
 }
 
 .logo-link {
@@ -140,6 +155,7 @@ a:active {
 form {
     display: flex;
     flex-direction: column;
+    text-align: left;
     gap: 0.25em; /* 4px */
 }
 
@@ -199,6 +215,10 @@ input:focus {
 #nav-title {
     font-size: 2rem;
     margin-left: 15px;
+}
+
+#register-container h2 {
+    max-width: 250px;
 }
 
 /* -- IMAGES -- */

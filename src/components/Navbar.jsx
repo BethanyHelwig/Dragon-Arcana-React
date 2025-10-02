@@ -11,8 +11,7 @@ export default function Navbar() {
                 <li><a href="games.html">Games <i class="fa-solid fa-dice-d20"></i></a></li>
                 <li><a href="friends.html">Friends <i class="fa-solid fa-user-group"></i></a></li>
                 <li><a href="search.html">World of D&D <i class="fa-solid fa-book-atlas"></i></a></li>
-                <li><a href="settings.html">Settings <i class="fa-solid fa-gear"></i></a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="#">Profile <i class="fa-solid fa-gear"></i></a></li>
             </ul>
         </nav>
     )
