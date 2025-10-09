@@ -1,8 +1,8 @@
-import { useState } from "react"
+import React from "react"
 
 export default function LoginContainer() {
-    const [containerLoginState, setLoginContainerState] = useState(true)
-    const [containerRegisterState, setRegisterContainerState] = useState(false)
+    const [containerLoginState, setLoginContainerState] = React.useState(true)
+    const [containerRegisterState, setRegisterContainerState] = React.useState(false)
 
     function switchContainer(){
         setLoginContainerState(prevState => !prevState)
