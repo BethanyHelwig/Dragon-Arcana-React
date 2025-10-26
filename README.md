@@ -1,16 +1,20 @@
-# React + Vite
+# Dragon Arcana
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An online gaming portal to play Dungeons & Dragons, save characters, and run games.
 
-Currently, two official plugins are available:
+## Features (IN PROGRESS)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Search for Dungeons & Dragons information using the D&D 5e API
+* Build and save character sheets
+* Create and run games/campaigns with friends
+    * Interactive map with movable tokens
+    * Log of actions and rolls
+    * Integration with character sheets
+    * Easily search for and add monsters with auto-generated stats
+* Add friends
+* Store homebrew features, for yourself or to share with others
 
-## React Compiler
+## Architecture
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend:** React, Javascript, HTMl, CSS
+**Backend:** Express, Node.js

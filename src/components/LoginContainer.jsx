@@ -1,12 +1,11 @@
 import React from "react"
 
 export default function LoginContainer() {
+    // State values
     const [containerLoginState, setLoginContainerState] = React.useState(true)
-    const [containerRegisterState, setRegisterContainerState] = React.useState(false)
 
     function switchContainer(){
         setLoginContainerState(prevState => !prevState)
-        setRegisterContainerState(prevState => !prevState)
     }
 
     return(
@@ -34,7 +33,7 @@ export default function LoginContainer() {
                 </form>
             </section>
             }
-        {containerRegisterState &&
+        {!containerLoginState &&
             <section id="register-container">
                 <h2>New here? Welcome, adventurer!</h2>
                 <form id="register-form">
