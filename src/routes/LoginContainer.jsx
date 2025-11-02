@@ -9,7 +9,7 @@ export default function LoginContainer() {
     }
 
     return(
-        <>
+        <main>
         {containerLoginState &&
             <section id="login-container">
                 <h2>Login, hero!</h2>
@@ -56,6 +56,6 @@ export default function LoginContainer() {
                 </form>
             </section>
             }
-        </>
+        </main>
     )
 }
