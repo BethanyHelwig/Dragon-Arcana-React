@@ -10,52 +10,32 @@ export default function LoginContainer() {
 
     return(
         <main>
-        {containerLoginState &&
-            <section id="login-container">
-                <h2>Login, hero!</h2>
-                <form id="login-form">
-                    <label for="email">Email:</label>
+            <section id={containerLoginState ? "login-container" : "register-container"}>
+                <h2>{containerLoginState ? "Login, hero!" : "New here? Welcome, adventurer!"}</h2>
+                <form id={containerLoginState ? "login-form" : "register-form"}>
+                    <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
                         required
-                        id="login-email"
+                        id="email"
                         placeholder="adventurer@home.com"
                         name="login" />
-                    <label for="password">Password:</label>
+                    <label htmlFor="password">Password:</label>
                     <input 
                         type="password" 
                         required
                         id="login-password" 
                         placeholder="M@gic1zcool"
                         name="login" />
-                    <button type="submit">Log in</button>
-                    <button type="button" onClick={switchContainer} className="btn-alt">Need to register instead?</button>
+                    <button type="submit">{containerLoginState ? "Log in" : "Create account"}</button>
                 </form>
+                <button type="button" onClick={switchContainer} className="btn-alt">
+                    {containerLoginState ? "Need to register instead?" : "Already have an account?"}
+                </button>
+                <button className="btn-alt">
+                    Continue as guest
+                </button>
             </section>
-            }
-        {!containerLoginState &&
-            <section id="register-container">
-                <h2>New here? Welcome, adventurer!</h2>
-                <form id="register-form">
-                    <label for="email">Email:</label>
-                    <input 
-                        type="email" 
-                        required
-                        id="register-email"
-                        placeholder="adventurer@home.com"
-                        name="login" />
-                    <label for="password">Password:</label>
-                    <input 
-                        type="password" 
-                        required
-                        id="register-password" 
-                        placeholder="M@gic1zcool"
-                        name="login" />
-                    <button type="submit">Create account</button>
-                    <button type="button" onClick={switchContainer} className="btn-alt">Already have an account?</button>
-                </form>
-            </section>
-            }
         </main>
     )
 }

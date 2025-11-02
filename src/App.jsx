@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import Navbar from "/src/components/Navbar.jsx"
-import LoginContainer from './routes/LoginContainer.jsx'
+import { createContext, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import Navbar from "/src/components/Navbar"
+import LoginContainer from './routes/LoginContainer'
+import Layout from "/src/components/Layout"
+import ThemeProvider from './components/ThemeProvider'
+import Search from "./routes/Search"
 
 function App() {
 
 	return (
-    	<BrowserRouter>
-      		<Navbar />
-			<Routes>
-				<Route path="/" element={<LoginContainer />} />
-			</Routes>
-    	</BrowserRouter>
+		<ThemeProvider>
+			<BrowserRouter>
+				<Routes>
+					<Route element={<Layout />}>
+						<Route path="/" element={<LoginContainer />} />
+						<Route path="/search" element={<Search />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</ThemeProvider>
   	)
 }
 

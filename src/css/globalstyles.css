@@ -1,11 +1,3 @@
-/* COLOR PALETTE
-Background: #211E23
-Blue: #80c5ff
-Purple: #aa00ff
-Pink: #eda2c0
-Green: 8ac781
-*/
-
 /* -- GENERAL -- */
 
 @import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
@@ -13,14 +5,36 @@ Green: 8ac781
 :root {
     --background-primary-color: #211E23;
     --text-primary-color: #e6e6e6;
-    --purple-accent-color: #aa00ff;
-    --dark-purple-accent-color: #6f378b;
-    --blue-accent-color: #80c5ff;
-    --blue-secondary-color: #204a64;
-    --gray-secondary-color: #353535;
+    --primary-accent-color: #aa00ff;
+    --dark-primary-accent-color: #6f378b;
+    --secondary-accent-color: #80c5ff;
+    --dark-secondary-accent-color: #204a64;
+
+    --button-hover-background: #ebd7f5;
+    --button-hover-text: #7700b3;
+
+    --link-hover-color: #aef6d3;
+    --header-footer-overlay: none;
+
+    --gray-secondary-color: #424242;
     --pale-blue-accent-color: #bbe1ff;
     --green-accent-color: #aef6d3;
     --dark-green-accent-color: #496F5D;
+}
+
+[data-theme="light"] {
+    --background-primary-color: rgb(209, 198, 179);
+    --text-primary-color: #211E23;
+    --primary-accent-color: #880000;
+    --dark-primary-accent-color: #880000;
+    --secondary-accent-color: #fcf9d4;
+    --dark-secondary-accent-color: #642020;
+
+    --button-hover-background: #fcf9d4;
+    --button-hover-text: #880000;
+    
+    --link-hover-color: #006e5c;
+    --header-footer-overlay: rgba(255, 255, 255, 0.4);
 }
 
 * {
@@ -28,32 +42,66 @@ Green: 8ac781
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     margin: 0;
     background-color: var(--background-primary-color);
+        background-blend-mode: multiply;
+    background-image: url("/src/assets/marble.jpg");
     color: var(--text-primary-color);
     font-family: "Amarante", serif;
     align-items: center;
+    min-height: 100vh;
+}
+
+#root {
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
 nav {
-    background-color: var(--background-primary-color);
+    background-color: var(--header-footer-overlay);
     display: flex;
     justify-content: space-between;
-    box-sizing: border-box;
     align-items: center;
     width: 100%;
     position: fixed;
     padding: 0.5em 1.5em;
     top: 0;
     left: 0;
-    box-shadow: 0 5px 5px black;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+footer {
+    background-color: var(--header-footer-overlay);
+    min-width: 100%;
+    padding: 1em;
+    text-align: center;
+    margin-top: auto;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    font-size: 1rem;
+    text-decoration:underline;
 }
 
 .nav-links {
     margin: 0; /* 20px */
     display: flex; /* change to flex */
     /* flex-direction: column; */
-    text-align: center;
+    align-items: center;
+    /* text-align: center; */
     list-style: none;
     gap: 1.875em; /* 30px */
     grid-column: span 3;
@@ -71,20 +119,29 @@ nav {
     margin: 0 0.625em; /* 10px */
     padding: 0.9375em; /* 15px */
     background: linear-gradient(var(--background-primary-color), var(--background-primary-color)) padding-box,
-                linear-gradient(var(--blue-accent-color), var(--purple-accent-color)) border-box;
+                linear-gradient(var(--secondary-accent-color), var(--primary-accent-color)) border-box;
     border-radius: 15px;
     border: 4px solid transparent;
 }
 
+#register-container button,
+#login-container button {
+    align-self: center;
+    width: 250px;
+}
+
 main {
-    margin-top: 5em; /* 80px */
+    margin-top: 6em; /* 80px */
     margin-bottom: 1.25em; /* 20px */
-    padding: 1.25em; /* 20px */
-    display: grid;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     gap: 1em;
     height: 100%;
+    min-width: 300px;
+    max-width: 1000px;
 }
 
 /* -- INTERACTIVE COMPONENTS -- */
@@ -94,7 +151,7 @@ button {
     font-size: 1rem;
     font-weight: bold;
     color: whitesmoke;
-    background-color: var(--dark-purple-accent-color);
+    background-color: var(--dark-primary-accent-color);
     border: none;
     border-radius: 5px;
     padding: 0.625em 1.25em; /* 10px 20px */
@@ -103,9 +160,9 @@ button {
 
 button:hover,
 button:active {
-    background-color: #ebd7f5;
-    color: #7700b3;
-    box-shadow: 0 0 20px var(--purple-accent-color);
+    background-color: var(--button-hover-background);
+    color: var(--button-hover-text);
+    box-shadow: 0 0 5px var(--primary-accent-color);
 }
 
 .btn-alt {
@@ -119,6 +176,12 @@ button:active {
     color: var(--green-accent-color);
     box-shadow: none;
     border: 1px solid var(--dark-green-accent-color);
+}
+
+#theme-toggle-btn {
+    border-radius: 50%;
+    padding: 0.5em;
+    margin: 0;
 }
 
 .hamburger {
@@ -136,14 +199,14 @@ button:active {
 }
 
 a {
-    color: whitesmoke;
+    color: var(--text-primary-color);
     text-decoration: none;
     font-size: 1.125rem; /* 18px */
 }
 
 a:hover,
 a:active {
-    color: var(--green-accent-color);
+    color: var(--link-hover-color);
 }
 
 .logo-link {
@@ -162,7 +225,6 @@ form {
 fieldset {
     border: none;
     display: flex;
-    flex-direction: column;
     padding: 0;
     margin: 0;
     gap: 0.5em;
@@ -174,8 +236,8 @@ input[type="password"],
 input[type="search"] {
     width: 250px;
     margin-bottom: 0.625em; /* 10px */
-    background-color: #363338;
-    border: 2px solid #5f8caa;
+    background-color: var(--gray-secondary-color);
+    border: 2px solid var(--dark-secondary-accent-color);
     border-radius: 10px;
     padding: 0.5em 0.75em;
     color: whitesmoke;
@@ -183,6 +245,11 @@ input[type="search"] {
 
 input[type="radio"] {
     margin-right: 0.5em;
+}
+
+legend {
+    text-decoration: underline;
+    margin-bottom: 0.5em;
 }
 
 select,
@@ -195,14 +262,28 @@ input:focus {
     outline: none;
 }
 
+#login-form,
+#register-form {
+    margin-bottom: 1em;
+    flex-direction: column;
+}
+
+#search-filters fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 1em;
+}
+
 /* -- TYPOGRAPHY -- */
 
 #hero-title,
-#nav-title {
-    background-image: linear-gradient(white 10%, var(--blue-accent-color));
+#nav-title,
+.title-glow {
+    background-image: linear-gradient(white 10%, var(--secondary-accent-color));
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 5px var(--purple-accent-color));
+    filter: drop-shadow(0 0 5px var(--primary-accent-color));
     margin: 0;
     padding: 0;
 }
@@ -226,4 +307,13 @@ input:focus {
 #nav-logo {
     height: 60px;
     padding: 5px;
+}
+
+/* -- UTILITY -- */
+
+.gradient-border {
+    background: linear-gradient(var(--background-primary-color), var(--background-primary-color)) padding-box,
+            linear-gradient(var(--secondary-accent-color), var(--primary-accent-color)) border-box;
+    border-radius: 15px;
+    border: 4px solid transparent;
 }
