@@ -37,12 +37,16 @@ export default function Search() {
         setChosenCategory(event.target.value)
     }
 
+    function search(formData){
+        console.log(formData)
+    }
+
     return (
         <main className="gradient-border">
             <h2 className="title-glow">World of D&D</h2>
-            <form id="search-form">
+            <form id="search-form" action={search}>
                 <label htmlFor="dnd-search">Search D&D Database:</label>
-                <input type="search" id="dnd-search" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
+                <input type="search" id="dnd-search" name="search-text" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
                 <select name="search-dropdown" id="search-dropdown" onChange={handleSelectionChange}>
                     {categoryElements}
                 </select>

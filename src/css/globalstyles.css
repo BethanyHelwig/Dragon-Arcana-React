@@ -209,6 +209,12 @@ a:active {
     color: var(--link-hover-color);
 }
 
+.active-link {
+    border-bottom: 2px solid var(--link-hover-color);
+    color: var(--link-hover-color);
+    border-radius: 5px;
+}
+
 .logo-link {
     display: flex;
     justify-content: center;

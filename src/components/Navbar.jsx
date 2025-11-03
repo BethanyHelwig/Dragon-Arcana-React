@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { ThemeContext } from "./ThemeProvider"
 
 export default function Navbar() {
@@ -14,11 +14,31 @@ export default function Navbar() {
             </Link>
             <button className="hamburger" data-btn="hamburger">&#9776;</button>
             <ul className="nav-links">
-                <li><Link to="characters">Characters <i className="fa-solid fa-user"></i></Link></li>
-                <li><Link to="games">Games <i className="fa-solid fa-dice-d20"></i></Link></li>
-                <li><Link to="friends">Friends <i className="fa-solid fa-user-group"></i></Link></li>
-                <li><Link to="/search">World of D&D <i className="fa-solid fa-book-atlas"></i></Link></li>
-                <li><a href="#">Profile <i className="fa-solid fa-gear"></i></a></li>
+                <li>
+                    <NavLink to="characters" className={({isActive}) => isActive ? "active-link" : null}>
+                        Characters <i className="fa-solid fa-user"></i>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="games" className={({isActive}) => isActive ? "active-link" : null}>
+                        Games <i className="fa-solid fa-dice-d20"></i>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="friends" className={({isActive}) => isActive ? "active-link" : null}>
+                        Friends <i className="fa-solid fa-user-group"></i>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="search" className={({isActive}) => isActive ? "active-link" : null}>
+                        World of D&D <i className="fa-solid fa-book-atlas"></i>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="profile" className={({isActive}) => isActive ? "active-link" : null}>
+                        Profile <i className="fa-solid fa-gear"></i>
+                    </NavLink>
+                </li>
                 <li>
                     <button id="theme-toggle-btn" onClick={toggleTheme}>
                         {theme === 'light'? 
