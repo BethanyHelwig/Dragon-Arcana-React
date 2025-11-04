@@ -144,6 +144,17 @@ main {
     max-width: 1000px;
 }
 
+#search-results {
+    width: 80%;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+}
+
+.search-result-item {
+    border-bottom: 2px solid var(--dark-primary-accent-color);
+    padding: 0.75em;
+}
+
 /* -- INTERACTIVE COMPONENTS -- */
 
 button {
@@ -322,4 +333,8 @@ input:focus {
             linear-gradient(var(--secondary-accent-color), var(--primary-accent-color)) border-box;
     border-radius: 15px;
     border: 4px solid transparent;
+}
+
+.bold {
+    font-weight: bold;
 }

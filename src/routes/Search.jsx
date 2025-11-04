@@ -1,9 +1,12 @@
 import React from "react"
+import SearchResult from "/src/components/SearchResult"
 
 export default function Search() {
 
     // State values
     const [ chosenCategory, setChosenCategory ] = React.useState("ability-scores")
+    const [ searchResults, setSearchResults ] = React.useState([])
+    const [ resultCount, setResultCount ] = React.useState("Results will display here.")
 
     const categories = [
         {value: "ability-scores", name: "Ability Scores"},
@@ -38,40 +41,77 @@ export default function Search() {
     }
 
     function search(formData){
-        console.log(formData)
+        const data = Object.fromEntries(formData.entries())
+        const { searchText, searchCategory, filter } = data
+
+        console.log("Search button clicked")
+
+        if (filter){
+            console.log(`Fetching: https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
+            fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
+                .then(response => response.json())
+                .then(data => { 
+                    setSearchResults(data.results) 
+                    setResultCount(`${data.results.length} results found for "${searchText}"`)
+                })
+                .catch (err => console.error(err))
+        }
+        else {
+            console.log(`Fetching: https://www.dnd5eapi.co/api/2014/${searchCategory}/?${searchText}`)
+            fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${searchText}`)
+                .then(response => response.json())
+                .then(data => { 
+                    setSearchResults(data.results) 
+                    setResultCount(`${data.results.length} results found for "${searchText}"`)
+                })
+                .catch (err => console.error(err))
+        }
     }
 
+    const searchResultsElements = searchResults.map(result => {
+            return (
+                <SearchResult 
+                    key={result.index}
+                    index={result.index}
+                    url={result.url}
+                    searchCategory
+                    name={result.name}
+                />
+            )
+        })
+
     return (
-        <main className="gradient-border">
-            <h2 className="title-glow">World of D&D</h2>
-            <form id="search-form" action={search}>
-                <label htmlFor="dnd-search">Search D&D Database:</label>
-                <input type="search" id="dnd-search" name="search-text" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
-                <select name="search-dropdown" id="search-dropdown" onChange={handleSelectionChange}>
-                    {categoryElements}
-                </select>
-                {chosenCategory === "monsters" && <div id="search-filters">
-                    <fieldset>
-                        <legend>Filter by:</legend>
-                        <div>
-                            <input type="radio" value="name" id="filter-name" name="filter" defaultChecked />
-                            <label htmlFor="filter-name">Name</label>
-                        </div>
+        <>
+            <main className="gradient-border">
+                <h2 className="title-glow">World of D&D</h2>
+                <form id="search-form" action={search}>
+                    <label htmlFor="dnd-search">Search D&D Database:</label>
+                    <input type="search" id="dnd-search" name="searchText" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
+                    <select name="searchCategory" id="searchCategory" onChange={handleSelectionChange} value={chosenCategory}>
+                        {categoryElements}
+                    </select>
+                    {chosenCategory === "monsters" && <div id="search-filters">
+                        <fieldset>
+                            <legend>Filter by:</legend>
+                            <div>
+                                <input type="radio" value="name" id="filter-name" name="filter" defaultChecked />
+                                <label htmlFor="filter-name">Name</label>
+                            </div>
 
-                        <div>
-                            <input type="radio" value="challenge_rating" id="filter-challenge-rating" name="filter" />
-                            <label htmlFor="filter-challenge-rating">Challenge Rating</label>
-                        </div>
-                    </fieldset>
-                </div>
-                }
-                <button type="submit">Go!</button>
-            </form>
-
-            <section id="search-results">
-                Your results will display here.
+                            <div>
+                                <input type="radio" value="challenge_rating" id="filter-challenge-rating" name="filter" />
+                                <label htmlFor="filter-challenge-rating">Challenge Rating</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    }
+                    <button type="submit">Go!</button>
+                </form>
+            </main>
+            <section id="search-results" className="gradient-border">
+                {resultCount}
+                {searchResults.length > 0 && searchResultsElements}
             </section>
-        
-        </main>
+        </>
     )
 }
