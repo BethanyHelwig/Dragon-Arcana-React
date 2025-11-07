@@ -50,9 +50,9 @@ export default function Search() {
             console.log(`Fetching: https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
             fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
                 .then(response => response.json())
-                .then(data => { 
+                .then(data => {                   
                     setSearchResults(data.results) 
-                    setResultCount(`${data.results.length} results found for "${searchText}"`)
+                    setResultCount(`${data.results.length} results found for "${searchText}". Click on a result to expand details.`)
                 })
                 .catch (err => console.error(err))
         }
@@ -61,7 +61,7 @@ export default function Search() {
             fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${searchText}`)
                 .then(response => response.json())
                 .then(data => { 
-                    setSearchResults(data.results) 
+                    setSearchResults(data.results.map(element => ({...element, searchCategory}))) 
                     setResultCount(`${data.results.length} results found for "${searchText}"`)
                 })
                 .catch (err => console.error(err))
@@ -74,7 +74,7 @@ export default function Search() {
                     key={result.index}
                     index={result.index}
                     url={result.url}
-                    searchCategory
+                    searchCategory={result.searchCategory}
                     name={result.name}
                 />
             )

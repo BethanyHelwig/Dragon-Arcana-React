@@ -1,5 +1,10 @@
 import { useState } from "react"
 
+import AbilityScore from "./SearchResults/AbilityScore"
+import Alignment from "./SearchResults/Alignment"
+import Background from "./SearchResults/Background"
+import Class from "./SearchResults/Class"
+
 export default function SearchResult(props) {
 
     const { index, url, name, searchCategory } = props
@@ -22,42 +27,37 @@ export default function SearchResult(props) {
         fetch(`https://www.dnd5eapi.co${url}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setDetails(data)
             })
     }
 
-    const detailsElements = details && Object.entries(details).map(([key, value]) => {
-            return <p><strong>{key.toUpperCase()}: </strong> {arrayConversion(value)}</p>
-        })
-
-    function arrayConversion(value){
-        console.log(typeof value)
-        if (Array.isArray(value)){
-            console.log("array detected")
-            for(let i = 0; i < value.length; i++) {
-                if (Array.isArray(value[i])) {
-                    arrayConversion(value[i])
-                } else {
-                    return value.join(", ")
-                }
-            }
-        }
-        else if (typeof value === 'object' && value != null){
-            console.log("object detected")
-            return Object.entries(value).map(([key, value]) => {
-                return <p><strong>{key.toUpperCase()}: </strong> {value} </p>
-            })
+    function detailElements(){
+        console.log(details)
+        if (details){
+            switch(searchCategory){
+                case "ability-scores":
+                    return <AbilityScore details={details} />
+                case "alignments":
+                    return <Alignment details={details } />
+                case "backgrounds":
+                    return <Background details={details} />
+                case "classes":
+                    return <Class details={details} />
+                default:
+                    return (<h4>Loading...</h4>)
+            }  
         }
         else {
-            return value
+            return (<h4>Loading...</h4>)
         }
+
     }
+
 
     return (
         <div className="search-result-item" key={index} onClick={toggleExpanded}>
             <h3>{name}</h3>
-            {expanded && detailsElements}
+            {expanded && detailElements()}
         </div>
     )
 }

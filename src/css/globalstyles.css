@@ -1,6 +1,7 @@
 /* -- GENERAL -- */
 
 @import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --background-primary-color: #211E23;
@@ -153,6 +154,28 @@ main {
 .search-result-item {
     border-bottom: 2px solid var(--dark-primary-accent-color);
     padding: 0.75em;
+    cursor: pointer;
+}
+
+.search-result-details {
+    font-family: "Roboto", sans-serif;
+}
+
+.search-result-details p {
+    margin: 0 0 1em;
+}
+
+.search-result-details ul {
+    padding-left: 15px;
+    list-style: none;
+}
+
+.search-result-details h4 {
+    margin: 0.4em 0 0.2em;
+}
+
+.search-result-details span {
+    font-weight: normal;
 }
 
 /* -- INTERACTIVE COMPONENTS -- */
